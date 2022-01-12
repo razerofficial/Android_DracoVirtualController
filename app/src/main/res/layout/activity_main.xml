@@ -59,11 +59,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@android:color/transparent" />
-            <ImageView
-                android:id="@+id/imgControllerMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:color/transparent" />
         </LinearLayout>
 
         <LinearLayout
@@ -272,6 +267,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/tap"
+                    android:visibility="invisible"/>
+                <ImageView
+                    android:id="@+id/imgControllerMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/menu"
+                    android:visibility="invisible"/>
+                <ImageView
+                    android:id="@+id/imgControllerSelect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/select"
+                    android:visibility="invisible"/>
+                <ImageView
+                    android:id="@+id/imgControllerStart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/start"
                     android:visibility="invisible"/>
             </RelativeLayout>
         </LinearLayout>

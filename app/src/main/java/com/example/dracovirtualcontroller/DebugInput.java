@@ -62,35 +62,35 @@ public class DebugInput {
 
 	public int debugGetKeyCode(String name) {
 		if (name.equals("BUTTON_A")) {
-			return Input.BUTTON_A;
+			return DracoInput.BUTTON_A;
 		} else if (name.equals("BUTTON_B")) {
-			return Input.BUTTON_B;
+			return DracoInput.BUTTON_B;
 		} else if (name.equals("BUTTON_X")) {
-			return Input.BUTTON_X;
+			return DracoInput.BUTTON_X;
 		} else if (name.equals("BUTTON_Y")) {
-			return Input.BUTTON_Y;
+			return DracoInput.BUTTON_Y;
 		} else if (name.equals("BUTTON_L1")) {
-			return Input.BUTTON_L1;
+			return DracoInput.BUTTON_L1;
 		} else if (name.equals("BUTTON_L2")) {
-			return Input.BUTTON_L2;
+			return DracoInput.BUTTON_L2;
 		} else if (name.equals("BUTTON_R1")) {
-			return Input.BUTTON_R1;
+			return DracoInput.BUTTON_R1;
 		} else if (name.equals("BUTTON_R2")) {
-			return Input.BUTTON_R2;
+			return DracoInput.BUTTON_R2;
 		} else if (name.equals("BUTTON_L3")) {
-			return Input.BUTTON_L3;
+			return DracoInput.BUTTON_L3;
 		} else if (name.equals("BUTTON_R3")) {
-			return Input.BUTTON_R3;
+			return DracoInput.BUTTON_R3;
 		} else if (name.equals("BUTTON_DPAD_UP")) {
-			return Input.BUTTON_DPAD_UP;
+			return DracoInput.BUTTON_DPAD_UP;
 		} else if (name.equals("BUTTON_DPAD_DOWN")) {
-			return Input.BUTTON_DPAD_DOWN;
+			return DracoInput.BUTTON_DPAD_DOWN;
 		} else if (name.equals("BUTTON_DPAD_RIGHT")) {
-			return Input.BUTTON_DPAD_RIGHT;
+			return DracoInput.BUTTON_DPAD_RIGHT;
 		} else if (name.equals("BUTTON_DPAD_LEFT")) {
-			return Input.BUTTON_DPAD_LEFT;
+			return DracoInput.BUTTON_DPAD_LEFT;
 		} else if (name.equals("BUTTON_MENU")) {
-			return Input.BUTTON_MENU;
+			return DracoInput.BUTTON_MENU;
 		} else {
 			return 0;
 		}
@@ -98,21 +98,21 @@ public class DebugInput {
 	
 	public static String debugGetButtonName(int button) {
 		SparseArray<String> names = new SparseArray<String>();
-        names.append(Input.BUTTON_A, "BUTTON_A");
-        names.append(Input.BUTTON_B, "BUTTON_B");
-        names.append(Input.BUTTON_X, "BUTTON_X");
-        names.append(Input.BUTTON_Y, "BUTTON_Y");
-        names.append(Input.BUTTON_L1, "BUTTON_L1");
-        names.append(Input.BUTTON_R1, "BUTTON_R1");
-        names.append(Input.BUTTON_L2, "BUTTON_L2");
-        names.append(Input.BUTTON_R2, "BUTTON_R2");
-        names.append(Input.BUTTON_L3, "BUTTON_L3");
-        names.append(Input.BUTTON_R3, "BUTTON_R3");
-        names.append(Input.BUTTON_DPAD_UP, "BUTTON_DPAD_UP");
-        names.append(Input.BUTTON_DPAD_DOWN, "BUTTON_DPAD_DOWN");
-        names.append(Input.BUTTON_DPAD_RIGHT, "BUTTON_DPAD_RIGHT");
-        names.append(Input.BUTTON_DPAD_LEFT, "BUTTON_DPAD_LEFT");
-        names.append(Input.BUTTON_MENU, "BUTTON_MENU");
+        names.append(DracoInput.BUTTON_A, "BUTTON_A");
+        names.append(DracoInput.BUTTON_B, "BUTTON_B");
+        names.append(DracoInput.BUTTON_X, "BUTTON_X");
+        names.append(DracoInput.BUTTON_Y, "BUTTON_Y");
+        names.append(DracoInput.BUTTON_L1, "BUTTON_L1");
+        names.append(DracoInput.BUTTON_R1, "BUTTON_R1");
+        names.append(DracoInput.BUTTON_L2, "BUTTON_L2");
+        names.append(DracoInput.BUTTON_R2, "BUTTON_R2");
+        names.append(DracoInput.BUTTON_L3, "BUTTON_L3");
+        names.append(DracoInput.BUTTON_R3, "BUTTON_R3");
+        names.append(DracoInput.BUTTON_DPAD_UP, "BUTTON_DPAD_UP");
+        names.append(DracoInput.BUTTON_DPAD_DOWN, "BUTTON_DPAD_DOWN");
+        names.append(DracoInput.BUTTON_DPAD_RIGHT, "BUTTON_DPAD_RIGHT");
+        names.append(DracoInput.BUTTON_DPAD_LEFT, "BUTTON_DPAD_LEFT");
+        names.append(DracoInput.BUTTON_MENU, "BUTTON_MENU");
         
         String buttonName = names.get(button);
         if (null == buttonName) {
@@ -123,12 +123,12 @@ public class DebugInput {
 	}
 
 	public static void debugAxisMotionEvent(MotionEvent motionEvent) {
-		Log.i(TAG, "("+Input.AXIS_LS_X + ") AXIS_LS_X value="+motionEvent.getAxisValue(Input.AXIS_LS_X));
-		Log.i(TAG, "("+Input.AXIS_LS_Y + ") AXIS_LS_Y value="+motionEvent.getAxisValue(Input.AXIS_LS_Y));
-		Log.i(TAG, "("+Input.AXIS_RS_X + ") AXIS_RS_X value="+motionEvent.getAxisValue(Input.AXIS_RS_X));
-		Log.i(TAG, "("+Input.AXIS_RS_Y + ") AXIS_RS_Y value="+motionEvent.getAxisValue(Input.AXIS_RS_Y));
-		Log.i(TAG, "("+Input.AXIS_L2 + ") AXIS_L2 value="+motionEvent.getAxisValue(Input.AXIS_L2));
-		Log.i(TAG, "("+Input.AXIS_R2 + ") AXIS_R2 value="+motionEvent.getAxisValue(Input.AXIS_R2));
+		Log.i(TAG, "("+ DracoInput.AXIS_LS_X + ") AXIS_LS_X value="+motionEvent.getAxisValue(DracoInput.AXIS_LS_X));
+		Log.i(TAG, "("+ DracoInput.AXIS_LS_Y + ") AXIS_LS_Y value="+motionEvent.getAxisValue(DracoInput.AXIS_LS_Y));
+		Log.i(TAG, "("+ DracoInput.AXIS_RS_X + ") AXIS_RS_X value="+motionEvent.getAxisValue(DracoInput.AXIS_RS_X));
+		Log.i(TAG, "("+ DracoInput.AXIS_RS_Y + ") AXIS_RS_Y value="+motionEvent.getAxisValue(DracoInput.AXIS_RS_Y));
+		Log.i(TAG, "("+ DracoInput.AXIS_L2 + ") AXIS_L2 value="+motionEvent.getAxisValue(DracoInput.AXIS_L2));
+		Log.i(TAG, "("+ DracoInput.AXIS_R2 + ") AXIS_R2 value="+motionEvent.getAxisValue(DracoInput.AXIS_R2));
 	}
 	
 	public static void debugMotionEvent(MotionEvent motionEvent) {

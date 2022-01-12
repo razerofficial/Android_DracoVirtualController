@@ -39,15 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imgControllerDpadLeft = null;
     private ImageView imgControllerDpadRight = null;
     private ImageView imgControllerDpadUp = null;
-    private ImageView imgControllerBack = null;
-    private ImageView imgControllerHome = null;
-    private ImageView imgControllerMenu = null;
-    private ImageView imgControllerNext = null;
-    private ImageView imgControllerPower = null;
-    private ImageView imgControllerPrevious = null;
     private ImageView imgControllerLS = null;
     private ImageView imgControllerRS = null;
-    private ImageView imgButtonMenu = null;
     private ImageView imgButtonB = null;
     private ImageView imgDpadDown = null;
     private ImageView imgDpadLeft = null;
@@ -65,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imgButtonX = null;
     private ImageView imgButtonY = null;
     private ImageView imgControllerTap = null;
-
-    // keep track when menu button was seen
-    private float mMenuDetected = 0f;
+    private ImageView imgControllerMenu = null;
+    private ImageView imgControllerSelect = null;
+    private ImageView imgControllerStart = null;
 
     private static final int MAX_CONTROLLERS = 1;
 
@@ -98,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
         mainLayout.setKeepScreenOn(true);
 
         txtSystem = (TextView)findViewById(R.id.txtSystem);
-        imgButtonMenu = (ImageView)findViewById(R.id.imgButtonMenu);
         txtKeyCode = (TextView)findViewById(R.id.txtKeyCode);
         imgControllerA = (ImageView)findViewById(R.id.imgControllerA);
         imgControllerX = (ImageView)findViewById(R.id.imgControllerX);
@@ -114,12 +106,6 @@ public class MainActivity extends AppCompatActivity {
         imgControllerDpadLeft = (ImageView)findViewById(R.id.imgControllerDpadLeft);
         imgControllerDpadRight = (ImageView)findViewById(R.id.imgControllerDpadRight);
         imgControllerDpadUp = (ImageView)findViewById(R.id.imgControllerDpadUp);
-        imgControllerBack = (ImageView)findViewById(R.id.imgControllerBack);
-        imgControllerHome = (ImageView)findViewById(R.id.imgControllerHome);
-        imgControllerMenu = (ImageView)findViewById(R.id.imgControllerMenu);
-        imgControllerNext = (ImageView)findViewById(R.id.imgControllerNext);
-        imgControllerPrevious = (ImageView)findViewById(R.id.imgControllerPrevious);
-        imgControllerPower = (ImageView)findViewById(R.id.imgControllerPower);
         imgControllerLS = (ImageView)findViewById(R.id.imgControllerLS);
         imgControllerRS = (ImageView)findViewById(R.id.imgControllerRS);
         imgDpadDown = (ImageView)findViewById(R.id.imgDpadDown);
@@ -139,6 +125,9 @@ public class MainActivity extends AppCompatActivity {
         imgButtonX = (ImageView)findViewById(R.id.imgButtonX);
         imgButtonY = (ImageView)findViewById(R.id.imgButtonY);
         imgControllerTap = (ImageView)findViewById(R.id.imgControllerTap);
+        imgControllerMenu = (ImageView)findViewById(R.id.imgControllerMenu);
+        imgControllerSelect = (ImageView)findViewById(R.id.imgControllerSelect);
+        imgControllerStart = (ImageView)findViewById(R.id.imgControllerStart);
 
         mainLayout.setOnTouchListener((view, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -148,6 +137,12 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.i(TAG, "onBackPressed");
+        //super.onBackPressed();
     }
 
     @Override
@@ -174,12 +169,15 @@ public class MainActivity extends AppCompatActivity {
                         + DebugInput.debugGetButtonName(keyEvent.getKeyCode())+" source="+keyEvent.getSource());
             }
         }
+        if (keyEvent.getKeyCode() == DracoInput.BUTTON_MENU) {
+            return true;
+        }
         return super.dispatchKeyEvent(keyEvent);
     }
 
     void updateDPad(int playerNum) {
-        if (null == sButtonValues.get(playerNum).get(Input.BUTTON_DPAD_LEFT) &&
-                null == sButtonValues.get(playerNum).get(Input.BUTTON_DPAD_RIGHT)) {
+        if (null == sButtonValues.get(playerNum).get(DracoInput.BUTTON_DPAD_LEFT) &&
+                null == sButtonValues.get(playerNum).get(DracoInput.BUTTON_DPAD_RIGHT)) {
             float dpadX = sAxisValues.get(playerNum).get(MotionEvent.AXIS_HAT_X);
             if (dpadX > 0.25f) {
                 imgDpadRight.setVisibility(View.VISIBLE);
@@ -193,8 +191,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        if (null == sButtonValues.get(playerNum).get(Input.BUTTON_DPAD_DOWN) &&
-                null == sButtonValues.get(playerNum).get(Input.BUTTON_DPAD_UP)) {
+        if (null == sButtonValues.get(playerNum).get(DracoInput.BUTTON_DPAD_DOWN) &&
+                null == sButtonValues.get(playerNum).get(DracoInput.BUTTON_DPAD_UP)) {
             float dpadY = sAxisValues.get(playerNum).get(MotionEvent.AXIS_HAT_Y);
             if (dpadY > 0.25f) {
                 imgDpadDown.setVisibility(View.VISIBLE);
@@ -232,12 +230,12 @@ public class MainActivity extends AppCompatActivity {
         sAxisValues.get(playerNum).put(MotionEvent.AXIS_HAT_Y, dpadY);
         updateDPad(playerNum);
 
-        float lsX = motionEvent.getAxisValue(Input.AXIS_LS_X);
-        float lsY = motionEvent.getAxisValue(Input.AXIS_LS_Y);
-        float rsX = motionEvent.getAxisValue(Input.AXIS_RS_X);
-        float rsY = motionEvent.getAxisValue(Input.AXIS_RS_Y);
-        float l2 = motionEvent.getAxisValue(Input.AXIS_L2);
-        float r2 = motionEvent.getAxisValue(Input.AXIS_R2);
+        float lsX = motionEvent.getAxisValue(DracoInput.AXIS_LS_X);
+        float lsY = motionEvent.getAxisValue(DracoInput.AXIS_LS_Y);
+        float rsX = motionEvent.getAxisValue(DracoInput.AXIS_RS_X);
+        float rsY = motionEvent.getAxisValue(DracoInput.AXIS_RS_Y);
+        float l2 = motionEvent.getAxisValue(DracoInput.AXIS_L2);
+        float r2 = motionEvent.getAxisValue(DracoInput.AXIS_R2);
 
         //rotate input by N degrees to match image
         float degrees = 135;
@@ -286,73 +284,78 @@ public class MainActivity extends AppCompatActivity {
 
         switch (keyCode)
         {
-            case Input.BUTTON_L1:
+            case DracoInput.BUTTON_L1:
                 imgLeftBumper.setVisibility(View.VISIBLE);
                 break;
-            case Input.BUTTON_L2:
+            case DracoInput.BUTTON_L2:
                 imgLeftTrigger.setVisibility(View.VISIBLE);
                 break;
-            case Input.BUTTON_L3:
+            case DracoInput.BUTTON_L3:
                 imgLeftStick.setVisibility(View.INVISIBLE);
                 imgLeftThumb.setVisibility(View.VISIBLE);
                 break;
-            case Input.BUTTON_R1:
+            case DracoInput.BUTTON_R1:
                 imgRightBumper.setVisibility(View.VISIBLE);
                 break;
-            case Input.BUTTON_R2:
+            case DracoInput.BUTTON_R2:
                 imgRightTrigger.setVisibility(View.VISIBLE);
                 break;
-            case Input.BUTTON_R3:
+            case DracoInput.BUTTON_R3:
                 imgRightStick.setVisibility(View.INVISIBLE);
                 imgRightThumb.setVisibility(View.VISIBLE);
                 break;
-            case Input.BUTTON_X:
+            case DracoInput.BUTTON_X:
                 imgButtonX.setVisibility(View.VISIBLE);
                 break;
-            case Input.BUTTON_B:
+            case DracoInput.BUTTON_B:
                 imgButtonB.setVisibility(View.VISIBLE);
                 break;
-            case Input.BUTTON_Y:
+            case DracoInput.BUTTON_Y:
                 imgButtonY.setVisibility(View.VISIBLE);
                 break;
-            case Input.BUTTON_A:
+            case DracoInput.BUTTON_A:
                 imgButtonA.setVisibility(View.VISIBLE);
                 break;
-            case Input.BUTTON_DPAD_DOWN:
+            case DracoInput.BUTTON_DPAD_DOWN:
                 if (keyEvent.getSource() == InputDevice.SOURCE_JOYSTICK ) {
                     updateDPad(playerNum);
                 } else {
-                    sButtonValues.get(0).put(Input.BUTTON_DPAD_DOWN, true);
+                    sButtonValues.get(0).put(DracoInput.BUTTON_DPAD_DOWN, true);
                     imgDpadDown.setVisibility(View.VISIBLE);
                 }
                 break;
-            case Input.BUTTON_DPAD_LEFT:
+            case DracoInput.BUTTON_DPAD_LEFT:
                 if (keyEvent.getSource() == InputDevice.SOURCE_JOYSTICK ) {
                     updateDPad(playerNum);
                 } else {
-                    sButtonValues.get(0).put(Input.BUTTON_DPAD_LEFT, true);
+                    sButtonValues.get(0).put(DracoInput.BUTTON_DPAD_LEFT, true);
                     imgDpadLeft.setVisibility(View.VISIBLE);
                 }
                 break;
-            case Input.BUTTON_DPAD_RIGHT:
+            case DracoInput.BUTTON_DPAD_RIGHT:
                 if (keyEvent.getSource() == InputDevice.SOURCE_JOYSTICK ) {
                     updateDPad(playerNum);
                 } else {
-                    sButtonValues.get(playerNum).put(Input.BUTTON_DPAD_RIGHT, true);
+                    sButtonValues.get(playerNum).put(DracoInput.BUTTON_DPAD_RIGHT, true);
                     imgDpadRight.setVisibility(View.VISIBLE);
                 }
                 break;
-            case Input.BUTTON_DPAD_UP:
+            case DracoInput.BUTTON_DPAD_UP:
                 if (keyEvent.getSource() == InputDevice.SOURCE_JOYSTICK ) {
                     updateDPad(playerNum);
                 } else {
-                    sButtonValues.get(0).put(Input.BUTTON_DPAD_UP, true);
+                    sButtonValues.get(0).put(DracoInput.BUTTON_DPAD_UP, true);
                     imgDpadUp.setVisibility(View.VISIBLE);
                 }
                 break;
-            case Input.BUTTON_MENU:
-                imgButtonMenu.setVisibility(View.VISIBLE);
-                mMenuDetected = System.nanoTime() + 1000000000;
+            case DracoInput.BUTTON_MENU:
+                imgControllerMenu.setVisibility(View.VISIBLE);
+                break;
+            case DracoInput.BUTTON_SELECT:
+                imgControllerSelect.setVisibility(View.VISIBLE);
+                break;
+            case DracoInput.BUTTON_START:
+                imgControllerStart.setVisibility(View.VISIBLE);
                 break;
             default:
                 Log.i(TAG, "Unrecognized KeyDown="+keyCode);
@@ -374,72 +377,78 @@ public class MainActivity extends AppCompatActivity {
 
         switch (keyCode)
         {
-            case Input.BUTTON_L1:
+            case DracoInput.BUTTON_L1:
                 imgLeftBumper.setVisibility(View.INVISIBLE);
                 break;
-            case Input.BUTTON_L2:
+            case DracoInput.BUTTON_L2:
                 imgLeftTrigger.setVisibility(View.INVISIBLE);
                 break;
-            case Input.BUTTON_L3:
+            case DracoInput.BUTTON_L3:
                 imgLeftStick.setVisibility(View.VISIBLE);
                 imgLeftThumb.setVisibility(View.INVISIBLE);
                 break;
-            case Input.BUTTON_R1:
+            case DracoInput.BUTTON_R1:
                 imgRightBumper.setVisibility(View.INVISIBLE);
                 break;
-            case Input.BUTTON_R2:
+            case DracoInput.BUTTON_R2:
                 imgRightTrigger.setVisibility(View.INVISIBLE);
                 break;
-            case Input.BUTTON_R3:
+            case DracoInput.BUTTON_R3:
                 imgRightStick.setVisibility(View.VISIBLE);
                 imgRightThumb.setVisibility(View.INVISIBLE);
                 break;
-            case Input.BUTTON_X:
+            case DracoInput.BUTTON_X:
                 imgButtonX.setVisibility(View.INVISIBLE);
                 break;
-            case Input.BUTTON_B:
+            case DracoInput.BUTTON_B:
                 imgButtonB.setVisibility(View.INVISIBLE);
                 break;
-            case Input.BUTTON_Y:
+            case DracoInput.BUTTON_Y:
                 imgButtonY.setVisibility(View.INVISIBLE);
                 break;
-            case Input.BUTTON_A:
+            case DracoInput.BUTTON_A:
                 imgButtonA.setVisibility(View.INVISIBLE);
                 break;
-            case Input.BUTTON_DPAD_DOWN:
+            case DracoInput.BUTTON_DPAD_DOWN:
                 if (keyEvent.getSource() == InputDevice.SOURCE_JOYSTICK ) {
                     updateDPad(playerNum);
                 } else {
-                    sButtonValues.get(0).put(Input.BUTTON_DPAD_DOWN, false);
+                    sButtonValues.get(0).put(DracoInput.BUTTON_DPAD_DOWN, false);
                     imgDpadDown.setVisibility(View.INVISIBLE);
                 }
                 break;
-            case Input.BUTTON_DPAD_LEFT:
+            case DracoInput.BUTTON_DPAD_LEFT:
                 if (keyEvent.getSource() == InputDevice.SOURCE_JOYSTICK ) {
                     updateDPad(playerNum);
                 } else {
-                    sButtonValues.get(0).put(Input.BUTTON_DPAD_LEFT, false);
+                    sButtonValues.get(0).put(DracoInput.BUTTON_DPAD_LEFT, false);
                     imgDpadLeft.setVisibility(View.INVISIBLE);
                 }
                 break;
-            case Input.BUTTON_DPAD_RIGHT:
+            case DracoInput.BUTTON_DPAD_RIGHT:
                 if (keyEvent.getSource() == InputDevice.SOURCE_JOYSTICK ) {
                     updateDPad(playerNum);
                 } else {
-                    sButtonValues.get(0).put(Input.BUTTON_DPAD_RIGHT, false);
+                    sButtonValues.get(0).put(DracoInput.BUTTON_DPAD_RIGHT, false);
                     imgDpadRight.setVisibility(View.INVISIBLE);
                 }
                 break;
-            case Input.BUTTON_DPAD_UP:
+            case DracoInput.BUTTON_DPAD_UP:
                 if (keyEvent.getSource() == InputDevice.SOURCE_JOYSTICK ) {
                     updateDPad(playerNum);
                 } else {
-                    sButtonValues.get(playerNum).put(Input.BUTTON_DPAD_UP, false);
+                    sButtonValues.get(playerNum).put(DracoInput.BUTTON_DPAD_UP, false);
                     imgDpadUp.setVisibility(View.INVISIBLE);
                 }
                 break;
-            case Input.BUTTON_MENU:
-                //wait 1 second
+            case DracoInput.BUTTON_MENU:
+                imgControllerMenu.setVisibility(View.INVISIBLE);
+                break;
+            case DracoInput.BUTTON_SELECT:
+                imgControllerSelect.setVisibility(View.INVISIBLE);
+                break;
+            case DracoInput.BUTTON_START:
+                imgControllerStart.setVisibility(View.INVISIBLE);
                 break;
         }
 

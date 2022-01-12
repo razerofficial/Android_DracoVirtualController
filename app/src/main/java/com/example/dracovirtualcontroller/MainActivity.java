@@ -24,9 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private static final Float AXIS_SCALER = 4f;
 
     private TextView txtSystem = null;
-    private TextView txtController = null;
     private TextView txtKeyCode = null;
-    private TextView txtKeyCode2 = null;
     private ImageView imgControllerA = null;
     private ImageView imgControllerX = null;
     private ImageView imgControllerY = null;
@@ -37,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imgControllerR1 = null;
     private ImageView imgControllerR2 = null;
     private ImageView imgControllerR3 = null;
-    private ImageView imgControllerDpad = null;
     private ImageView imgControllerDpadDown = null;
     private ImageView imgControllerDpadLeft = null;
     private ImageView imgControllerDpadRight = null;
@@ -100,10 +97,8 @@ public class MainActivity extends AppCompatActivity {
         mainLayout.setKeepScreenOn(true);
 
         txtSystem = (TextView)findViewById(R.id.txtSystem);
-        txtController = (TextView)findViewById(R.id.txtController);
         imgButtonMenu = (ImageView)findViewById(R.id.imgButtonMenu);
         txtKeyCode = (TextView)findViewById(R.id.txtKeyCode);
-        txtKeyCode2 = (TextView)findViewById(R.id.txtKeyCode2);
         imgControllerA = (ImageView)findViewById(R.id.imgControllerA);
         imgControllerX = (ImageView)findViewById(R.id.imgControllerX);
         imgControllerY = (ImageView)findViewById(R.id.imgControllerY);
@@ -114,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
         imgControllerR1 = (ImageView)findViewById(R.id.imgControllerR1);
         imgControllerR2 = (ImageView)findViewById(R.id.imgControllerR2);
         imgControllerR3 = (ImageView)findViewById(R.id.imgControllerR3);
-        imgControllerDpad = (ImageView)findViewById(R.id.imgControllerDpad);
         imgControllerDpadDown = (ImageView)findViewById(R.id.imgControllerDpadDown);
         imgControllerDpadLeft = (ImageView)findViewById(R.id.imgControllerDpadLeft);
         imgControllerDpadRight = (ImageView)findViewById(R.id.imgControllerDpadRight);

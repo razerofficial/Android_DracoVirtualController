@@ -23,17 +23,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="KeyCode:" />
-        <TextView
-            android:id="@+id/txtKeyCode2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="KeyCode2:" />
-        <TextView
-            android:id="@+id/txtController"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Controller" />
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -110,11 +99,6 @@
                 android:src="@android:color/transparent" />
             <ImageView
                 android:id="@+id/imgControllerRS"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:color/transparent" />
-            <ImageView
-                android:id="@+id/imgControllerDpad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@android:color/transparent" />

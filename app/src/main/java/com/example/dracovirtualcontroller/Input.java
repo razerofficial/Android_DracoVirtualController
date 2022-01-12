@@ -1,13 +1,15 @@
 package com.example.dracovirtualcontroller;
 
+import android.view.MotionEvent;
+
 public class Input {
 
-    public static final int AXIS_LS_X = 0;
-    public static final int AXIS_LS_Y = 0;
-    public static final int AXIS_RS_X = 0;
-    public static final int AXIS_RS_Y = 0;
-    public static final int AXIS_L2 = 0;
-    public static final int AXIS_R2 = 0;
+    public static final int AXIS_LS_X = MotionEvent.AXIS_X;
+    public static final int AXIS_LS_Y = MotionEvent.AXIS_Y;
+    public static final int AXIS_RS_X = MotionEvent.AXIS_Z;
+    public static final int AXIS_RS_Y = MotionEvent.AXIS_RZ;
+    public static final int AXIS_L2 = MotionEvent.AXIS_BRAKE;
+    public static final int AXIS_R2 = MotionEvent.AXIS_GAS;
 
     public static final int BUTTON_A = 96;
     public static final int BUTTON_B = 97;

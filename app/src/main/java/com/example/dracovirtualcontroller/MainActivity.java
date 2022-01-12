@@ -208,7 +208,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onGenericMotionEvent(MotionEvent motionEvent) {
         //Log.i(TAG, "onGenericMotionEvent");
-        //DebugInput.debugOuyaMotionEvent(motionEvent);
+        //DebugInput.debugMotionEvent(motionEvent);
+        //DebugInput.debugAxisMotionEvent(motionEvent);
 
         int playerNum = getPlayerNum();
         /*

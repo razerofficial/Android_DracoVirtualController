@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imgRightThumb = null;
     private ImageView imgButtonX = null;
     private ImageView imgButtonY = null;
+    private ImageView imgControllerTap = null;
 
     // keep track when menu button was seen
     private float mMenuDetected = 0f;
@@ -137,6 +138,16 @@ public class MainActivity extends AppCompatActivity {
         imgButtonB = (ImageView)findViewById(R.id.imgButtonB);
         imgButtonX = (ImageView)findViewById(R.id.imgButtonX);
         imgButtonY = (ImageView)findViewById(R.id.imgButtonY);
+        imgControllerTap = (ImageView)findViewById(R.id.imgControllerTap);
+
+        mainLayout.setOnTouchListener((view, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                imgControllerTap.setVisibility(View.VISIBLE);
+            } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                imgControllerTap.setVisibility(View.INVISIBLE);
+            }
+            return true;
+        });
     }
 
     @Override

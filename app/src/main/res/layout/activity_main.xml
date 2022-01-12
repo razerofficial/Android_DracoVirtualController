@@ -84,12 +84,12 @@
             android:orientation="horizontal"
             android:layout_gravity="center">
             <ImageView
-                android:id="@+id/imgControllerO"
+                android:id="@+id/imgControllerA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@android:color/transparent" />
             <ImageView
-                android:id="@+id/imgControllerU"
+                android:id="@+id/imgControllerX"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@android:color/transparent" />
@@ -99,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:src="@android:color/transparent" />
             <ImageView
-                android:id="@+id/imgControllerA"
+                android:id="@+id/imgControllerB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@android:color/transparent" />
@@ -236,10 +236,10 @@
                     android:src="@drawable/lt"
                     android:visibility="invisible"/>
                 <ImageView
-                    android:id="@+id/imgButtonO"
+                    android:id="@+id/imgButtonB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/o"
+                    android:src="@drawable/b"
                     android:visibility="invisible"/>
                 <ImageView
                     android:id="@+id/imgRightStick"
@@ -272,10 +272,10 @@
                     android:src="@drawable/thumbr"
                     android:visibility="invisible"/>
                 <ImageView
-                    android:id="@+id/imgButtonU"
+                    android:id="@+id/imgButtonX"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/u"
+                    android:src="@drawable/x"
                     android:visibility="invisible"/>
                 <ImageView
                     android:id="@+id/imgButtonY"

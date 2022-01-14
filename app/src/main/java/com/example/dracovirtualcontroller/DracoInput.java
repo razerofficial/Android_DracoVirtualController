@@ -1,5 +1,6 @@
 package com.example.dracovirtualcontroller;
 
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 
 public class DracoInput {
@@ -26,7 +27,10 @@ public class DracoInput {
     public static final int BUTTON_DPAD_DOWN = 20;
     public static final int BUTTON_DPAD_RIGHT = 22;
     public static final int BUTTON_DPAD_LEFT = 21;
-    public static final int BUTTON_MENU = MotionEvent.BUTTON_BACK;
+    public static final int BUTTON_MENU = KeyEvent.KEYCODE_MENU;
     public static final int BUTTON_SELECT = 109;
     public static final int BUTTON_START = 108;
+    public static final int BUTTON_VOLUME_UP = 24;
+    public static final int BUTTON_VOLUME_DOWN = 25;
+    public static final int BUTTON_POWER = 0;
 }

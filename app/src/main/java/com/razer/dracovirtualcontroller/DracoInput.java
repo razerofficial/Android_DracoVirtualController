@@ -1,4 +1,4 @@
-package com.example.dracovirtualcontroller;
+package com.razer.dracovirtualcontroller;
 
 import android.view.KeyEvent;
 import android.view.MotionEvent;

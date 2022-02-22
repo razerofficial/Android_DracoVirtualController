@@ -1,8 +1,6 @@
-package com.example.dracovirtualcontroller;
+package com.razer.dracovirtualcontroller;
 
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
 import android.util.SparseArray;
@@ -14,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
 
@@ -140,13 +140,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        Log.i(TAG, "onBackPressed");
-        //super.onBackPressed();
-    }
-
-    @Override
     public boolean dispatchGenericMotionEvent(MotionEvent motionEvent) {
+        //Log.i(TAG, "dispatchGenericMotionEvent");
         /*
         if (null != txtKeyCode) {
             InputDevice device = motionEvent.getDevice();
@@ -274,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent keyEvent) {
-        Log.i(TAG, "onKeyDown keyCode="+keyCode+" source="+keyEvent.getSource());
+        //Log.i(TAG, "onKeyDown keyCode="+keyCode+" source="+keyEvent.getSource());
 
         if (keyEvent.getSource() == InputDevice.SOURCE_JOYSTICK) {
             return false;
@@ -367,7 +362,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent keyEvent) {
-        Log.i(TAG, "onKeyUp keyCode="+keyCode+" source="+keyEvent.getSource());
+        //Log.i(TAG, "onKeyUp keyCode="+keyCode+" source="+keyEvent.getSource());
 
         if (keyEvent.getSource() == InputDevice.SOURCE_JOYSTICK) {
             return false;

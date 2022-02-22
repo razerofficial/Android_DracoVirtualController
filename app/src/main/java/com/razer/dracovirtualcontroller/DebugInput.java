@@ -1,4 +1,4 @@
-package com.example.dracovirtualcontroller;
+package com.razer.dracovirtualcontroller;
 
 import android.util.Log;
 import android.util.SparseArray;

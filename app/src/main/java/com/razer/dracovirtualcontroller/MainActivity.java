@@ -164,9 +164,6 @@ public class MainActivity extends AppCompatActivity {
                         + DebugInput.debugGetButtonName(keyEvent.getKeyCode())+" source="+keyEvent.getSource());
             }
         }
-        if (keyEvent.getKeyCode() == DracoInput.BUTTON_MENU) {
-            return true;
-        }
         return super.dispatchKeyEvent(keyEvent);
     }
 
@@ -343,9 +340,6 @@ public class MainActivity extends AppCompatActivity {
                     imgDpadUp.setVisibility(View.VISIBLE);
                 }
                 break;
-            case DracoInput.BUTTON_MENU:
-                imgControllerMenu.setVisibility(View.VISIBLE);
-                break;
             case DracoInput.BUTTON_SELECT:
                 imgControllerSelect.setVisibility(View.VISIBLE);
                 break;
@@ -435,9 +429,6 @@ public class MainActivity extends AppCompatActivity {
                     sButtonValues.get(playerNum).put(DracoInput.BUTTON_DPAD_UP, false);
                     imgDpadUp.setVisibility(View.INVISIBLE);
                 }
-                break;
-            case DracoInput.BUTTON_MENU:
-                imgControllerMenu.setVisibility(View.INVISIBLE);
                 break;
             case DracoInput.BUTTON_SELECT:
                 imgControllerSelect.setVisibility(View.INVISIBLE);
